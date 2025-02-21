@@ -58,9 +58,4 @@ public class UsersController {
         return "redirect:/users/allusers";
     }
 
-    @GetMapping("/createtable")
-    public String createTable(Model model) {
-        userService.createTable();
-        return "redirect:/users/allusers";
-    }
 }

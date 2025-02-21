@@ -5,5 +5,7 @@ import crud.entity.User;
 import java.util.List;
 
 public interface UserDao {
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
+    void addUser(User user);
+    User getUserById(int id);
 }

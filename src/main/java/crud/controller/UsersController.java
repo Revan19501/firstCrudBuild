@@ -52,4 +52,15 @@ public class UsersController {
         model.addAttribute("user", user);
         return "adduser";
     }
+    @GetMapping("/deleteuser")
+    public String deleteUser(@RequestParam("id") int id, Model model) {
+        userService.deleteUserById(id);
+        return "redirect:/users/allusers";
+    }
+
+    @GetMapping("/createtable")
+    public String createTable(Model model) {
+        userService.createTable();
+        return "redirect:/users/allusers";
+    }
 }

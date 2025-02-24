@@ -5,8 +5,10 @@ import crud.sevice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -40,7 +42,10 @@ public class UsersController {
     }
 
     @PostMapping("/add")
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "adduser";
+        }
         System.out.println("Received user: " + user.getFirstName() + " " + user.getLastName());
         userService.addUser(user);
         return "redirect:/users/allusers";
